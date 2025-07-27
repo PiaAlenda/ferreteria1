@@ -31,7 +31,6 @@ const SearchResultPage = () => {
           )}
         </main>
       </div>
-      <CategoryFooter />
     </div>
   )
 }

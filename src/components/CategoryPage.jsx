@@ -8,7 +8,6 @@ const CategoryPage = () => {
   const { slug } = useParams();
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Filtrar productos donde la categoría coincida con el slug (ambos en minúsculas)
   const filteredProducts = products.filter(
     (p) => p.category.toLowerCase() === slug.toLowerCase()
   );

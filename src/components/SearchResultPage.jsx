@@ -24,7 +24,7 @@ export default function SearchResultPage() {
   });
 
   return (
-    <div className="search-page-layout" style={{ display: "flex",}}>
+    <div className="search-page-layout" style={{ display: "flex", margin:0,}}>
       <SideBar />
 
       <div>

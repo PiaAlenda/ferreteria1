@@ -816,7 +816,7 @@ a {
 }
 
 .product-category-section {
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: var(--spacing-xs);
 }
 
 /* PRODUCT DETAIL */

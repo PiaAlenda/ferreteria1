@@ -20,46 +20,45 @@ const ProductListing = ({ searchTerm }) => {
     return p.name.toLowerCase().includes(searchTerm.toLowerCase())
   }
 
-  return (
-    <section id="products" className="products">
-      <div className="container">
-        <div className="categories">
-          <div className="section-header">
-            <h3>Conocé nuestros productos en descuento</h3>
-          </div>
+ return (
+  <section id="products" className="products">
+    <div className="container">
+      <div className="categories">
+        <div className="section-header">
+          <h3>Conocé nuestros productos en descuento</h3>
         </div>
-         </div>
+      </div>
+      </div>
 
-        {categorias.map((cat) => {
-          const productosFiltrados = products
-            .filter((p) => p.category === cat)
-            .filter(buscarCoincidencias)
+      {categorias.map((cat) => {
+        const productosFiltrados = products
+          .filter((p) => p.category === cat)
+          .filter(buscarCoincidencias)
 
-          if (productosFiltrados.length === 0) return null
+        if (productosFiltrados.length === 0) return null
 
-          return (
-            <div key={cat} className="product-category-section">
-              <div className="products-grid">
-                {productosFiltrados.map((prod) => (
-                  <ProductCard
-                    key={prod.id}
-                    product={prod}
-                    onSelectProduct={setProductoSeleccionado}
-                  />
-                ))}
-              </div>
+        return (
+          <div key={cat} className="product-category-section">
+            <div className="products-grid">
+              {productosFiltrados.map((prod) => (
+                <ProductCard
+                  key={prod.id}
+                  product={prod}
+                  onSelectProduct={setProductoSeleccionado}
+                />
+              ))}
             </div>
-          )
-        })}
-
-        {productoSeleccionado && (
-          <ProductDetail
-            product={productoSeleccionado}
-            onClose={() => setProductoSeleccionado(null)}
-          />
-        )}
-     
-    </section>
-  )
+          </div>
+        )
+      })}
+  
+    {productoSeleccionado && (
+      <ProductDetail
+        product={productoSeleccionado}
+        onClose={() => setProductoSeleccionado(null)}
+      />
+    )}
+  </section>
+)
 }
 export default ProductListing

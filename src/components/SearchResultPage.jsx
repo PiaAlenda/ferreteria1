@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom"
 import products from "./data/products"
 import CategoryHeader from "./CategoryHeader"
 import CategorySidebar from "./CategorySidebar"
-import CategoryFooter from "./CategoryFooter"
 import ProductCard from "./ProductCard"
 
 

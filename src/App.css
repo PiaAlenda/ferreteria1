@@ -1186,7 +1186,7 @@ a {
 
   /* Sidebar */
   .sidebar {
-    width: 40%;
+    width: 50%;
     position: static;
     margin-bottom: 2rem;
   }
@@ -1375,15 +1375,13 @@ a {
   }
 
   .noresults {
-    margin: 175px var(--spacing-md);
+    margin: 100px var(--spacing-md);
     padding: var(--spacing-xl);
   }
 
   .noresults h1 {
-    font-size: var(--text-2xl);
+    font-size: 1.7rem;
   }
-
-  
 }
 
 /* MÓVIL - 480px y menores */

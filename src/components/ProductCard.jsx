@@ -12,40 +12,55 @@ export default function ProductCard({ product, onSelectProduct }) {
     : null;
 
   return (
-    <div className="product-card" onClick={() => onSelectProduct(product)}>
-      
+    <div
+      className={`product-card ${product.stock === 0 ? "out-of-stock" : ""}`}
+      onClick={() => onSelectProduct(product)}
+    >
       <div className="product-image">
         <img
           src={product.image || "/placeholder.svg"}
           alt={product.name}
-          className="product-image-inner"
         />
         {tieneDescuento && (
-          <div className="discount-badge">-{product.discount * 100}%</div>
+          <div className="offer-badge">-{product.discount * 100}%</div>
         )}
+        {product.stock === 0 && <div className="stock-badge">Agotado</div>}
       </div>
 
       <div className="product-info">
-        <h4>{product.name}</h4>
-        <div className="product-footer">
-          {tieneDescuento ? (
-            <div className="product-price">
-              <span className="original-price">${precioOriginal.toFixed(2)}</span>
-              <span className="discounted-price">${precioDescontado}</span>
-            </div>
-          ) : (
-            <span className="product-price">${precioOriginal.toFixed(2)}</span>
+        <h4 className="product-name">{product.name}</h4>
+
+        <div className="product-price">
+          <span className="current-price">
+            ${tieneDescuento ? precioDescontado : precioOriginal.toFixed(2)}
+          </span>
+          {tieneDescuento && (
+            <span className="original-price">
+              ${precioOriginal.toFixed(2)}
+            </span>
           )}
         </div>
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-product"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Comprar
-        </a>
+
+        <div className="product-actions">
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-product"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Comprar
+          </a>
+          <button
+            className="btn-secondaryy"
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelectProduct(product);
+            }}
+          >
+            👁
+          </button>
+        </div>
       </div>
     </div>
   );

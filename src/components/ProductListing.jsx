@@ -39,7 +39,7 @@ const ProductListing = ({ searchTerm }) => {
 
           return (
             <div key={cat} className="product-category-section">
-              <div className="products-gridd">
+              <div className="products-grid">
                 {productosFiltrados.map((prod) => (
                   <ProductCard
                     key={prod.id}

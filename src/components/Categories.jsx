@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const categorias = [
     { slug: "herramientas-electricas", icon: "fa-hammer", titulo: "Herramientas Eléctricas" },
@@ -18,11 +18,11 @@ const Categories = () => {
     { slug: "seguridad", icon: "fa-screwdriver", titulo: "Seguridad" },
     { slug: "materiales-electricos", icon: "fa-wrench", titulo: "Materiales Eléctricos" },
     { slug: "sanitarios", icon: "fa-screwdriver", titulo: "Sanitarios" },
-  ]
+  ];
 
   const handleClick = (slug) => {
-    navigate(`/categoria/${slug}`)
-  }
+    navigate(`/categoria/${slug.toLowerCase()}`);
+  };
 
   return (
     <section id="categories" className="categories">
@@ -31,25 +31,25 @@ const Categories = () => {
           <h3>Mirá nuestras Categorías</h3>
           <p>Explora nuestra amplia gama de productos organizados por categorías</p>
         </div>
-         </div>
-        <div className="categories-grid">
-          {categorias.map((cat, idx) => (
-            <div
-              className="category-card"
-              key={idx}
-              onClick={() => handleClick(cat.slug)}
-              style={{ cursor: "pointer" }}
-            >
-              <div className="category-icon">
-                <i className={`fas ${cat.icon}`}></i>
-              </div>
-              <h5 style={{ fontWeight: "lighter" }}>{cat.titulo}</h5>
+      </div>
+      <div className="categories-grid">
+        {categorias.map((cat, idx) => (
+          <div
+            className="category-card"
+            key={idx}
+            onClick={() => handleClick(cat.slug)}
+            style={{ cursor: "pointer" }}
+          >
+            <div className="category-icon">
+              <i className={`fas ${cat.icon}`}></i>
             </div>
-          ))}
-        </div>
-     
+            <h5 style={{ fontWeight: "lighter" }}>{cat.titulo}</h5>
+          </div>
+        ))}
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;
+

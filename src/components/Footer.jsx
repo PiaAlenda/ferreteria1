@@ -31,16 +31,15 @@ const Footer = () => (
         <div className="footer-section">
           <h4>Contacto</h4>
           <ul>
-            <li>Av. Principal 123</li>
             <li>(555) 123-4567</li>
             <li>info@ferreteria-elmartillo.com</li>
             <div class="social-icons-container">
                         <div class="social-icons">
                            <a href="https://www.instagram.com/ferreteria_Miguelito00000000000/" target="_blank" rel="noreferrer">
-                            <img src="/src/assets/icons8-instagram-50 (2).png" alt="Instagram" />
+                            <img src="/img/icons8-instagram-50 (2).png" alt="Instagram" />
                           </a>
                             <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer">
-                                <img src="/src/assets/icons8-whatsapp-50 (1).png" alt="WhatsApp" />
+                                <img src="/img/icons8-whatsapp-50 (1).png" alt="WhatsApp" />
                             </a>
                         </div>
                     </div>

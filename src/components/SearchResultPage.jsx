@@ -1,39 +1,75 @@
-import { useParams } from "react-router-dom"
-import products from "./data/products"
-import CategoryHeader from "./CategoryHeader"
-import CategorySidebar from "./CategorySidebar"
-import ProductCard from "./ProductCard"
+import React, { useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import products from "./data/products";
+import SideBar from "./CategorySidebar";
+import ProductCard from "./ProductCard";
+import ProductDetail from "./ProductDetail";
 
+export default function SearchResultPage() {
+  const { termino } = useParams();
+  const location = useLocation();
 
-const normalize = (str) =>
-  str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-const SearchResultPage = () => {
-  const { termino } = useParams()
-  const terminoNormalizado = termino.toLowerCase().trim()
+  const termLower = termino.toLowerCase().trim();
 
-  const resultados = products.filter((producto) =>
-    producto.name.toLowerCase().includes(terminoNormalizado)
-  )
+  const isCategoryRoute = location.pathname.startsWith("/categoria/");
+
+  const filteredProducts = products.filter((product) => {
+    if (isCategoryRoute) {
+      return product.category.toLowerCase() === termLower;
+    } else {
+      return product.name.toLowerCase().includes(termLower);
+    }
+  });
 
   return (
-    <div>
-      <CategoryHeader />
-      <div className="flex">
-        <CategorySidebar />
-        <main className="p-4 flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {resultados.length > 0 ? (
-            resultados.map((prod) => (
-              <ProductCard key={prod.id} product={prod} />
-            ))
-          ) : (
-            <p className="col-span-full">No se encontraron productos para "{termino}".</p>
-          )}
-        </main>
+    <div className="search-page-layout" style={{ display: "flex",}}>
+      <SideBar />
+
+      <div>
+        <div className="grid-header">
+          <div className="breadcrumb">
+            Inicio / {isCategoryRoute ? "Categoría" : "Búsqueda"} / <strong>{termino}</strong>
+          </div>
+          <div className="grid-controls">
+            <div className="results-count">
+              Mostrando {filteredProducts.length} producto(s)
+            </div>
+          </div>
+        </div>
+
+        {filteredProducts.length === 0 ? (
+        <div className="noresults">
+  <h1>No se encontraron productos para <strong>"{termino}"</strong>.</h1>
+  <ul className="search-suggestions">
+    <li>Utiliza términos más generales o menos específicos.</li>
+    <li>Comprueba la ortografía.</li>
+    <li>
+      Vuelve a <a href="/" className="link">la página principal</a> para seguir buscando.
+    </li>
+  </ul>
+</div>
+
+        ) : (
+          <div className="products-grid">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onSelectProduct={setSelectedProduct}
+              />
+            ))}
+          </div>
+        )}
       </div>
+
+      {selectedProduct && (
+        <ProductDetail
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
     </div>
-  )
+  );
 }
-
-export default SearchResultPage
-

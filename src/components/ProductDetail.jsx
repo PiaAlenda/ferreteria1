@@ -43,7 +43,7 @@ export default function ProductDetail({ product, onClose }) {
               rel="noopener noreferrer"
               className="btn-product"
             >
-              Comprar por WhatsApp
+              Comprar
             </a>
           </div>
         </div>

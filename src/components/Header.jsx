@@ -41,10 +41,10 @@ const Header = () => {
         <div className="header-top-row">
           <div className="nav-brand">
             <img
-              src="/src/assets/logo-ferreteria.png"
+              src="/img/logo-ferreteria.png"
               alt="Ferretería Miguel Logo"
               onError={(e) => {
-                e.target.src = "/src/assets/Logo ferretería moderno ilustrativo negro con amarillo .png"
+                e.target.src = "/img/Logo ferretería moderno ilustrativo negro con amarillo .png"
               }}
             />
             <h1>Ferretería Miguel</h1>

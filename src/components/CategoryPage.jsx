@@ -1,39 +1,44 @@
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import products from "./data/products";
+import ProductCard from "./ProductCard";
+import ProductDetail from "./ProductDetail";
+
 const CategoryPage = () => {
-  const { slug } = useParams()
+  const { slug } = useParams();
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const normalize = (str) =>
-    str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
-
-  const productosFiltrados = products.filter(
-    (producto) => normalize(producto.category) === slug
-  )
+  // Filtrar productos donde la categoría coincida con el slug (ambos en minúsculas)
+  const filteredProducts = products.filter(
+    (p) => p.category.toLowerCase() === slug.toLowerCase()
+  );
 
   return (
-    <section className="category-products">
-      <div className="container">
-        <h2 style={{ textTransform: "capitalize" }}>
-          {slug.replaceAll("-", " ")}
-        </h2>
+    <section className="category-page container">
+      <h2>Productos en categoría: {slug.replace(/-/g, " ")}</h2>
 
-        {productosFiltrados.length > 0 ? (
-          <div className="products-gridd">
-            {productosFiltrados.map((prod) => (
-              <div className="product-cardd" key={prod.id}>
-                <img src={prod.image} alt={prod.name} className="product-image" />
-                <h4>{prod.name}</h4>
-                <p>${prod.price.toLocaleString("es-AR")}</p>
-                <small>{prod.description}</small>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>No hay productos disponibles en esta categoría aún.</p>
-        )}
-      </div>
+      {filteredProducts.length === 0 ? (
+        <p>No hay productos en esta categoría.</p>
+      ) : (
+        <div className="products-grid">
+          {filteredProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onSelectProduct={setSelectedProduct}
+            />
+          ))}
+        </div>
+      )}
+
+      {selectedProduct && (
+        <ProductDetail
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default CategoryPage
+export default CategoryPage;

@@ -42,15 +42,20 @@ export default function ProductCard({ product, onSelectProduct }) {
         </div>
 
         <div className="product-actions">
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-product"
-            onClick={(e) => e.stopPropagation()}
-          >
-            Comprar
-          </a>
+        <a
+  href={whatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn-product"
+  onClick={(e) => e.stopPropagation()}
+>
+  <img
+    src="/img/carrito.png"
+    alt="Carrito"
+    style={{ width: "20px", height: "20px", marginRight: "8px" }}
+  />
+</a>
+
           <button
             className="btn-secondaryy"
             onClick={(e) => {
@@ -58,7 +63,11 @@ export default function ProductCard({ product, onSelectProduct }) {
               onSelectProduct(product);
             }}
           >
-            👁
+              <img
+    src="/img/icons8-ojo-50.png"
+    alt="Carrito"
+    style={{ width: "20px", height: "20px", marginRight: "8px" }}
+  />
           </button>
         </div>
       </div>

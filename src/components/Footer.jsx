@@ -33,8 +33,8 @@ const Footer = () => (
           <ul>
             <li>(555) 123-4567</li>
             <li>info@ferreteria-elmartillo.com</li>
-            <div class="social-icons-container">
-                        <div class="social-icons">
+            <div className="social-icons-container">
+                        <div className="social-icons">
                            <a href="https://www.instagram.com/ferreteria_Miguelito00000000000/" target="_blank" rel="noreferrer">
                             <img src="/img/icons8-instagram-50 (2).png" alt="Instagram" />
                           </a>

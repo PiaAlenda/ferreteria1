@@ -24,52 +24,39 @@ export default function SearchResultPage() {
   });
 
   return (
-    <div className="search-page-layout" style={{ display: "flex", margin:0,}}>
-      <SideBar />
-
-      <div>
-        <div className="grid-header">
-          <div className="breadcrumb">
-            Inicio / {isCategoryRoute ? "Categoría" : "Búsqueda"} / <strong>{termino}</strong>
-          </div>
-          <div className="grid-controls">
-            <div className="results-count">
-              Mostrando {filteredProducts.length} producto(s)
-            </div>
-          </div>
-        </div>
-
-        {filteredProducts.length === 0 ? (
-        <div className="noresults">
-  <h1>No se encontraron productos para <strong>"{termino}"</strong>.</h1>
-  <ul className="search-suggestions">
-    <li>Utiliza términos más generales o menos específicos.</li>
-    <li>Comprueba la ortografía.</li>
-    <li>
-      Vuelve a <a href="/" className="link">la página principal</a> para seguir buscando.
-    </li>
-  </ul>
-</div>
-
-        ) : (
-          <div className="products-grid">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onSelectProduct={setSelectedProduct}
-              />
-            ))}
-          </div>
-        )}
+    <div className="search-page-layout">
+  <SideBar />
+  <div className="products">
+    {filteredProducts.length === 0 ? (
+      <div className="noresults">
+        <h1>No se encontraron productos para <strong>"{termino}"</strong>.</h1>
+        <ul className="search-suggestions">
+          <li>Utiliza términos más generales o menos específicos.</li>
+          <li>Comprueba la ortografía.</li>
+          <li>
+            Vuelve a <a href="/" className="link">la página principal</a> para seguir buscando.
+          </li>
+        </ul>
       </div>
+    ) : (
+      <div className="products-grid">
+        {filteredProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onSelectProduct={setSelectedProduct}
+          />
+        ))}
+      </div>
+    )}
+  </div>
 
-      {selectedProduct && (
-        <ProductDetail
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-        />
-      )}
-    </div>
+  {selectedProduct && (
+    <ProductDetail
+      product={selectedProduct}
+      onClose={() => setSelectedProduct(null)}
+    />
+  )}
+</div>
   );
 }

@@ -29,7 +29,8 @@ export default function SearchResultPage() {
   <div className="products">
     {filteredProducts.length === 0 ? (
       <div className="noresults">
-        <h1>No se encontraron productos para <strong>"{termino}"</strong>.</h1>
+        <h1>Producto no encontrado <br />
+            <strong>"{termino}"</strong>.</h1>
         <ul className="search-suggestions">
           <li>Utiliza términos más generales o menos específicos.</li>
           <li>Comprueba la ortografía.</li>
